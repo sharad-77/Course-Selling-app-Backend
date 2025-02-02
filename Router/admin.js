@@ -1,7 +1,10 @@
 const { Router } = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { adminSchema, adminModel } = require("../db");
-const adminRouter = Router();
+const { configDotenv } = require("dotenv");
 
+const adminRouter = Router();
 const ADMINSECRET = process.env.JWT_ADMIN_SECRET;
 
 adminRouter.post("/signup", async (req, res) => {
@@ -21,12 +24,8 @@ adminRouter.post("/signup", async (req, res) => {
       });
     } finally {
       res.json({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
         message: "Done !",
       });
-      console.log("Signup Complated");
     }
   });
   
