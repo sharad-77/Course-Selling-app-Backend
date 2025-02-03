@@ -1,13 +1,15 @@
-const {Router} = require("express");
+const {Router, request} = require("express");
 const {courseSchema} = require('../db')
 const courseRouter = Router();
+const { usermiddelware }= require("../middelware/user")
 
-courseRouter.post("/", async(req, res) => {
+courseRouter.post("/",usermiddelware, async(req, res) => {
+    
     res.json({
         message:"courses endpoint"
     })
 })
-courseRouter.get("/", async (req,res) => {
+courseRouter.get("/",usermiddelware, async (req,res) => {
     res.json({
         message:"preview endpoint"
     })
